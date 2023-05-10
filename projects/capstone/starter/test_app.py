@@ -5,6 +5,10 @@ from flask_sqlalchemy import SQLAlchemy
 from app import create_app
 from models import Actor, Movie, app, db
 
+print("Enter an admin authentication token;")
+verification_token='Bearer ' + input()
+required_headers={'Authorization': verification_token}
+
 class CastingAgencyTestCase(unittest.TestCase):
     """This class represents the agency test case"""
 
@@ -25,6 +29,7 @@ class CastingAgencyTestCase(unittest.TestCase):
     def tearDown(self):
         """Executed after reach test"""
         pass
+
 
     #----------------------------------------------------------------------------#
     # Test cases
@@ -56,7 +61,7 @@ class CastingAgencyTestCase(unittest.TestCase):
             'gender': "female"
         } 
 
-        res = self.client().post('/add-actor', json=new_actor, headers={'Content-Type': 'application/json'})
+        res = self.client().post('/add-actor', json=new_actor, headers=required_headers)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -71,7 +76,7 @@ class CastingAgencyTestCase(unittest.TestCase):
             'release': "24-12-2016"
         } 
 
-        res = self.client().post('/add-movie', json=new_movie, headers={'Content-Type': 'application/json'})
+        res = self.client().post('/add-movie', json=new_movie, headers=required_headers)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -85,7 +90,7 @@ class CastingAgencyTestCase(unittest.TestCase):
             'age': "35",
             'gender': "female"
         } 
-        res = self.client().post("/actors", json=new_actor)
+        res = self.client().post("/actors", json=new_actor,headers=required_headers)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 405)
@@ -97,7 +102,7 @@ class CastingAgencyTestCase(unittest.TestCase):
             'title': "Piku",
             'release': "24-12-2016"
         }
-        res = self.client().post("/movies", json=new_movie)
+        res = self.client().post("/movies", json=new_movie, headers=required_headers)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 405)
@@ -105,24 +110,24 @@ class CastingAgencyTestCase(unittest.TestCase):
         self.assertEqual(data["message"], "Method Not Allowed")
 
     def test_delete_actor(self):
-        res = self.client().delete("/actors/2")
+        res = self.client().delete("/actors/1", headers=required_headers)
         data = json.loads(res.data)
 
-        actor = Actor.query.filter(Actor.id == 2).one_or_none()
+        actor = Actor.query.filter(Actor.id == 1).one_or_none()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
-        self.assertEqual(data["deleted"], 2)
+        self.assertEqual(data["delete"], 1)
 
     def test_delete_movie(self):
-        res = self.client().delete("/movies/2")
+        res = self.client().delete("/movies/1", headers=required_headers)
         data = json.loads(res.data)
 
         movie = Movie.query.filter(Movie.id == 2).one_or_none()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
-        self.assertEqual(data["deleted"], 2)
+        self.assertEqual(data["delete"], 1)
 
     def test_should_not_allow_new_actor_missing_gender(self):
         new_actor = {
@@ -130,7 +135,7 @@ class CastingAgencyTestCase(unittest.TestCase):
             'age': "35"
         } 
 
-        res = self.client().post('/add-movie',  json=new_actor)
+        res = self.client().post('/add-movie',  json=new_actor, headers=required_headers)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 422)
@@ -142,7 +147,7 @@ class CastingAgencyTestCase(unittest.TestCase):
             'title': "Missing release date"
         } 
 
-        res = self.client().post('/add-movie',  json=new_movie)
+        res = self.client().post('/add-movie',  json=new_movie, headers=required_headers)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 422)
