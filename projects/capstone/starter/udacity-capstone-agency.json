@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "dcbd52b2-dc71-4be7-9913-0ce919737321",
+		"name": "udacity-capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "actor",
+			"item": [
+				{
+					"name": "http://127.0.0.1:5000/actors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains actors array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.actors).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/actors",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:5000/add-actor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjZxUjQtclBmdEEwUkhFNEpyLWNKeCJ9.eyJpc3MiOiJodHRwczovL2F2LWZzbmQudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDY0MTBjYTM3YTQ3MmZlNjI2NWU1NWNjNyIsImF1ZCI6ImNhcHN0b25lIiwiaWF0IjoxNjgzNzQ1Mjk0LCJleHAiOjE2ODM4MDEyOTQsImF6cCI6Im1GeDNoZjltalRkZnhuNmZhVTBCSk9rTWJxUkdqdUdhIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphZGQtYWN0b3IiLCJwb3N0OmFkZC1tb3ZpZSJdfQ.PIe5qVNEbDQZtDpjfZ9GYvLPwcre3WNXbPeVBjpXQigp-fYyOj8ExBvyzr0qRm8h0zWLGTwhXjIXrYc4zL6AXs-V2NmXMkDa8YkdWkX_uYXymSX9RLu4ZhDZ4EWOiEkKswd2UURQ1Us7a7wdSK7TJ1FQNBWbnGXu9SesvCXY4SofSnwrzb0RUVaSjtVZkOtfNVYKire8GqWEZCAyu_FtnycoN96VU-AensKRvajDM10UtXms8eXMOVRaAG6g3ZhZmvNS9Fd2tDptm03_NLKSyB7VrclDJ14nqnF9MKquTyI97Cw-s_sSJocoB7ca7n_HpIKYbMxIsTSGkQTo7IBxmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Deepika Padukone\",\r\n    \"age\":\"39\",\r\n    \"gender\":\"female\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/add-actor",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"add-actor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:5000/actors/2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjZxUjQtclBmdEEwUkhFNEpyLWNKeCJ9.eyJpc3MiOiJodHRwczovL2F2LWZzbmQudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDY0MTBjYTM3YTQ3MmZlNjI2NWU1NWNjNyIsImF1ZCI6ImNhcHN0b25lIiwiaWF0IjoxNjgzNzQ1Mjk0LCJleHAiOjE2ODM4MDEyOTQsImF6cCI6Im1GeDNoZjltalRkZnhuNmZhVTBCSk9rTWJxUkdqdUdhIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphZGQtYWN0b3IiLCJwb3N0OmFkZC1tb3ZpZSJdfQ.PIe5qVNEbDQZtDpjfZ9GYvLPwcre3WNXbPeVBjpXQigp-fYyOj8ExBvyzr0qRm8h0zWLGTwhXjIXrYc4zL6AXs-V2NmXMkDa8YkdWkX_uYXymSX9RLu4ZhDZ4EWOiEkKswd2UURQ1Us7a7wdSK7TJ1FQNBWbnGXu9SesvCXY4SofSnwrzb0RUVaSjtVZkOtfNVYKire8GqWEZCAyu_FtnycoN96VU-AensKRvajDM10UtXms8eXMOVRaAG6g3ZhZmvNS9Fd2tDptm03_NLKSyB7VrclDJ14nqnF9MKquTyI97Cw-s_sSJocoB7ca7n_HpIKYbMxIsTSGkQTo7IBxmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/actors/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"actors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:5000/actors/2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjZxUjQtclBmdEEwUkhFNEpyLWNKeCJ9.eyJpc3MiOiJodHRwczovL2F2LWZzbmQudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDY0MTBjYTM3YTQ3MmZlNjI2NWU1NWNjNyIsImF1ZCI6ImNhcHN0b25lIiwiaWF0IjoxNjgzNzQ1Mjk0LCJleHAiOjE2ODM4MDEyOTQsImF6cCI6Im1GeDNoZjltalRkZnhuNmZhVTBCSk9rTWJxUkdqdUdhIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphZGQtYWN0b3IiLCJwb3N0OmFkZC1tb3ZpZSJdfQ.PIe5qVNEbDQZtDpjfZ9GYvLPwcre3WNXbPeVBjpXQigp-fYyOj8ExBvyzr0qRm8h0zWLGTwhXjIXrYc4zL6AXs-V2NmXMkDa8YkdWkX_uYXymSX9RLu4ZhDZ4EWOiEkKswd2UURQ1Us7a7wdSK7TJ1FQNBWbnGXu9SesvCXY4SofSnwrzb0RUVaSjtVZkOtfNVYKire8GqWEZCAyu_FtnycoN96VU-AensKRvajDM10UtXms8eXMOVRaAG6g3ZhZmvNS9Fd2tDptm03_NLKSyB7VrclDJ14nqnF9MKquTyI97Cw-s_sSJocoB7ca7n_HpIKYbMxIsTSGkQTo7IBxmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Blake Lively\",\r\n    \"age\":\"38\",\r\n    \"gender\":\"female\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/actors/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"actors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "movie",
+			"item": [
+				{
+					"name": "http://127.0.0.1:5000/movies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/movies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:5000/add-movie",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjZxUjQtclBmdEEwUkhFNEpyLWNKeCJ9.eyJpc3MiOiJodHRwczovL2F2LWZzbmQudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDY0MTBjYTM3YTQ3MmZlNjI2NWU1NWNjNyIsImF1ZCI6ImNhcHN0b25lIiwiaWF0IjoxNjgzNzQ1Mjk0LCJleHAiOjE2ODM4MDEyOTQsImF6cCI6Im1GeDNoZjltalRkZnhuNmZhVTBCSk9rTWJxUkdqdUdhIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphZGQtYWN0b3IiLCJwb3N0OmFkZC1tb3ZpZSJdfQ.PIe5qVNEbDQZtDpjfZ9GYvLPwcre3WNXbPeVBjpXQigp-fYyOj8ExBvyzr0qRm8h0zWLGTwhXjIXrYc4zL6AXs-V2NmXMkDa8YkdWkX_uYXymSX9RLu4ZhDZ4EWOiEkKswd2UURQ1Us7a7wdSK7TJ1FQNBWbnGXu9SesvCXY4SofSnwrzb0RUVaSjtVZkOtfNVYKire8GqWEZCAyu_FtnycoN96VU-AensKRvajDM10UtXms8eXMOVRaAG6g3ZhZmvNS9Fd2tDptm03_NLKSyB7VrclDJ14nqnF9MKquTyI97Cw-s_sSJocoB7ca7n_HpIKYbMxIsTSGkQTo7IBxmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Red\",\r\n    \"release\":\"07-06-2022\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/add-movie",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"add-movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:5000/movies/2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjZxUjQtclBmdEEwUkhFNEpyLWNKeCJ9.eyJpc3MiOiJodHRwczovL2F2LWZzbmQudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDY0MTBjYTM3YTQ3MmZlNjI2NWU1NWNjNyIsImF1ZCI6ImNhcHN0b25lIiwiaWF0IjoxNjgzNzQ1Mjk0LCJleHAiOjE2ODM4MDEyOTQsImF6cCI6Im1GeDNoZjltalRkZnhuNmZhVTBCSk9rTWJxUkdqdUdhIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphZGQtYWN0b3IiLCJwb3N0OmFkZC1tb3ZpZSJdfQ.PIe5qVNEbDQZtDpjfZ9GYvLPwcre3WNXbPeVBjpXQigp-fYyOj8ExBvyzr0qRm8h0zWLGTwhXjIXrYc4zL6AXs-V2NmXMkDa8YkdWkX_uYXymSX9RLu4ZhDZ4EWOiEkKswd2UURQ1Us7a7wdSK7TJ1FQNBWbnGXu9SesvCXY4SofSnwrzb0RUVaSjtVZkOtfNVYKire8GqWEZCAyu_FtnycoN96VU-AensKRvajDM10UtXms8eXMOVRaAG6g3ZhZmvNS9Fd2tDptm03_NLKSyB7VrclDJ14nqnF9MKquTyI97Cw-s_sSJocoB7ca7n_HpIKYbMxIsTSGkQTo7IBxmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/movies/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:5000/movies/4",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjZxUjQtclBmdEEwUkhFNEpyLWNKeCJ9.eyJpc3MiOiJodHRwczovL2F2LWZzbmQudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDY0MTBjYTM3YTQ3MmZlNjI2NWU1NWNjNyIsImF1ZCI6ImNhcHN0b25lIiwiaWF0IjoxNjgzNzQ1Mjk0LCJleHAiOjE2ODM4MDEyOTQsImF6cCI6Im1GeDNoZjltalRkZnhuNmZhVTBCSk9rTWJxUkdqdUdhIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6YWN0b3JzIiwiZGVsZXRlOm1vdmllcyIsImdldDphY3RvcnMiLCJnZXQ6bW92aWVzIiwicGF0Y2g6YWN0b3JzIiwicGF0Y2g6bW92aWVzIiwicG9zdDphZGQtYWN0b3IiLCJwb3N0OmFkZC1tb3ZpZSJdfQ.PIe5qVNEbDQZtDpjfZ9GYvLPwcre3WNXbPeVBjpXQigp-fYyOj8ExBvyzr0qRm8h0zWLGTwhXjIXrYc4zL6AXs-V2NmXMkDa8YkdWkX_uYXymSX9RLu4ZhDZ4EWOiEkKswd2UURQ1Us7a7wdSK7TJ1FQNBWbnGXu9SesvCXY4SofSnwrzb0RUVaSjtVZkOtfNVYKire8GqWEZCAyu_FtnycoN96VU-AensKRvajDM10UtXms8eXMOVRaAG6g3ZhZmvNS9Fd2tDptm03_NLKSyB7VrclDJ14nqnF9MKquTyI97Cw-s_sSJocoB7ca7n_HpIKYbMxIsTSGkQTo7IBxmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"Red\",\r\n    \"release\":\"07-12-2022\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/movies/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"movies",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	]
+}
